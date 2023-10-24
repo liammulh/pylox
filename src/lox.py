@@ -28,7 +28,7 @@ class Lox:
     def main(self) -> None:
         """Run the interpreter."""
         if len(self.args) > 2:
-            print("Usage: pylox [script]")
+            print("Usage: python lox.py [script]")
             raise SystemExit(64)  # Based on exit codes in sysexits.h.
         if len(self.args) == 2:
             self._run_file(self.args[1])
