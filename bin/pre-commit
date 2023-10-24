@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#
+# Format, perform static analysis, and run tests prior to committing.
+
+# Format
+black .
+
+# Lint
+PYTHONPATH=$(pwd) pylint src
+PYTHONPATH=$(pwd) pylint tests
+
+# Check types
+mypy .
+
+# Run tests
+coverage run -m pytest
+
+# Report test coverage
+coverage report
