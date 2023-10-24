@@ -8,6 +8,7 @@ them into the REPL.
 
 # Built-in libraries.
 from typing import List
+import sys
 
 
 class Lox:
@@ -48,7 +49,7 @@ class Lox:
         """Run the REPL."""
         while True:
             try:
-                source = input("(Lox) > ")
+                source = input("Lox --> ")
                 self._run(source)
             except EOFError:
                 break
@@ -61,3 +62,8 @@ class Lox:
              source: Lox source code.
         """
         print(source)
+
+
+if __name__ == "__main__":
+    lox = Lox(sys.argv)
+    lox.main()
