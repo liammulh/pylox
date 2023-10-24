@@ -6,6 +6,10 @@
 #     ^ History behind this rule in the GitHub issue below.
 #     ^ https://github.com/python/mypy/issues/2427
 
+# Disable these Pylint rules.
+# pylint: disable=protected-access
+#     ^ Need to access private method to create mock.
+
 # Built-in libraries.
 from unittest.mock import MagicMock
 
@@ -30,15 +34,15 @@ def test_runs_on_file() -> None:
     """Ensure interpreter runs on file if correct args supplied."""
     args = ["arg0", "arg1 (correct number of args for running file)"]
     lox = Lox(args)
-    lox.run_file = MagicMock()
+    lox._run_file = MagicMock()
     lox.main()
-    assert lox.run_file.called
+    assert lox._run_file.called
 
 
 def test_runs_prompt() -> None:
     """Ensure interpreter runs prompt if correct args supplied."""
     args = ["arg0 (correct number of args for REPL)"]
     lox = Lox(args)
-    lox.run_prompt = MagicMock()
+    lox._run_prompt = MagicMock()
     lox.main()
-    assert lox.run_prompt.called
+    assert lox._run_prompt.called

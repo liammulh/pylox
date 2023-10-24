@@ -30,15 +30,15 @@ class Lox:
             print("Usage: pylox [script]")
             raise SystemExit(64)  # Based on exit codes in sysexits.h.
         if len(self.args) == 2:
-            self.run_file(self.args[1])
+            self._run_file(self.args[1])
         else:
-            self.run_prompt()
+            self._run_prompt()
 
     @staticmethod
-    def run_file(file: str) -> None:
+    def _run_file(file: str) -> None:
         """Run the interpreter on the given source file."""
         print(file)
 
     @staticmethod
-    def run_prompt() -> None:
+    def _run_prompt() -> None:
         """Run the REPL."""
