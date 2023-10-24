@@ -34,11 +34,30 @@ class Lox:
         else:
             self._run_prompt()
 
-    @staticmethod
-    def _run_file(file: str) -> None:
-        """Run the interpreter on the given source file."""
-        print(file)
+    def _run_file(self, path: str) -> None:
+        """Run the interpreter on the given source file.
+
+        Args:
+             path: Path to the Lox source file.
+        """
+        with open(path, encoding="utf-8") as f:
+            source = f.read()
+            self._run(source)
+
+    def _run_prompt(self) -> None:
+        """Run the REPL."""
+        while True:
+            try:
+                source = input("(Lox) > ")
+                self._run(source)
+            except EOFError:
+                break
 
     @staticmethod
-    def _run_prompt() -> None:
-        """Run the REPL."""
+    def _run(source: str) -> None:
+        """Run the interpreter.
+
+        Args:
+             source: Lox source code.
+        """
+        print(source)
