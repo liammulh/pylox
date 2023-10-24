@@ -8,7 +8,7 @@
 
 # Disable these Pylint rules.
 # pylint: disable=protected-access
-#     ^ Need to access private method to create mock.
+#     ^ Need to access private methods to create mock.
 
 # Built-in libraries.
 from unittest.mock import MagicMock
