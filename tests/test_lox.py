@@ -16,7 +16,7 @@ import pytest
 from src.lox import Lox
 
 
-def test_prints_usage(capsys) -> None:
+def test_prints_usage(capsys) -> None:  # type: ignore
     """Ensure usage message printed if too many args supplied."""
     args = ["arg0", "arg1", "arg2 (too many)"]
     lox = Lox(args)

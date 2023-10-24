@@ -13,7 +13,7 @@ from typing import List
 class Lox:
     """The main class for the interpreter."""
 
-    def __init__(self, args: List[str]):
+    def __init__(self, args: List[str]) -> None:
         """Initialize interpreter with supplied arguments.
 
         Args:
