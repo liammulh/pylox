@@ -44,6 +44,9 @@ class Lox:
         with open(path, encoding="utf-8") as f:
             source = f.read()
             self._run(source)
+            if self.had_error:
+                # We don't want to run code that has a known error.
+                raise SystemExit(65)
 
     def _run_prompt(self) -> None:
         """Run the REPL."""
@@ -51,6 +54,9 @@ class Lox:
             try:
                 source = input("Lox --> ")
                 self._run(source)
+                # If the user inputs erroneous code, we just continue
+                # looping.
+                self.had_error = False
             except EOFError:
                 break
 
@@ -62,6 +68,28 @@ class Lox:
              source: Lox source code.
         """
         print(source)
+
+    def _error(self, line: str, message: str) -> None:
+        """Report and register an error.
+
+        Args:
+             line: Line in source file where error occurred.
+             message: Message we want to display to the user about the
+                error. TODO: Accurate?
+        """
+        self._report(line, "", message)
+
+    def _report(self, line: str, where: str, message: str) -> None:
+        """Print an error message to stderr.
+
+        Args:
+             line: Line in source file where error occurred.
+             where: Where the error occurred. TODO: Accurate?
+             message: Message we want to display to the user about the
+                error.
+        """
+        print(f"[line {line}]: Error {where}: {message}", file=sys.stderr)
+        self.had_error = True
 
 
 if __name__ == "__main__":
